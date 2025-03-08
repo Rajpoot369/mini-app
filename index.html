@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Ads & Earn</title>
+    <script src='//whephiwums.com/sdk.js' data-zone='9054023' data-sdk='show_9054023'></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Watch Ads & Earn Rewards</h1>
+    
+    <button onclick="showRewardedAd()">Show Rewarded Ad</button>
+    <button onclick="showPopupAd()">Show Popup Ad</button>
+    <button onclick="showInterstitialAd()">Show In-App Interstitial</button>
+
+    <script>
+        function showRewardedAd() {
+            show_9054023().then(() => {
+                alert('You have earned a reward!');
+            }).catch(e => {
+                console.log('Ad Error:', e);
+            });
+        }
+
+        function showPopupAd() {
+            show_9054023('pop').then(() => {
+                alert('You watched a popup ad!');
+            }).catch(e => {
+                console.log('Popup Ad Error:', e);
+            });
+        }
+
+        function showInterstitialAd() {
+            show_9054023({ 
+                type: 'inApp', 
+                inAppSettings: { 
+                    frequency: 2, 
+                    capping: 0.1, 
+                    interval: 30, 
+                    timeout: 5, 
+                    everyPage: false 
+                } 
+            });
+        }
+
+        // Auto Ads System - हर 30 सेकंड में 1 Ad दिखेगा
+        setInterval(() => {
+            showInterstitialAd();
+        }, 30000);
+    </script>
+
+</body>
+</html>
